@@ -87,22 +87,10 @@ export const DocumentProcessing = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Document Inbox</h1>
-          <p className="text-sm text-slate-500 mt-1 font-medium">Upload and manage unstructured purchase orders for OCR extraction.</p>
+          <p className="text-sm text-slate-500 mt-1 font-medium">Manage unstructured purchase orders for OCR extraction.</p>
         </div>
-      </div>
-
-      {/* Upload Area */}
-      <div className="bg-white border-2 border-dashed border-indigo-200 rounded-2xl p-10 flex flex-col items-center justify-center text-center hover:bg-indigo-50/50 hover:border-indigo-400 transition-all cursor-pointer group shadow-sm">
-        <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-inner">
-          <UploadCloud className="w-8 h-8 text-indigo-600" />
-        </div>
-        <h3 className="text-lg font-bold text-slate-800 mb-2">Drag & Drop documents here</h3>
-        <p className="text-sm text-slate-500 mb-6 font-medium max-w-md">
-          Supported files: <span className="font-semibold text-slate-700">PDF, Excel (.xlsx), Word (.docx)</span>. 
-          Maximum file size is 25MB.
-        </p>
-        <button className="px-6 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:bg-indigo-700 transition-all hover:-translate-y-0.5">
-          Browse Files
+        <button className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white text-sm font-bold rounded-xl shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:bg-indigo-700 transition-all hover:-translate-y-0.5">
+          <UploadCloud className="w-4 h-4" /> Add Document
         </button>
       </div>
 

@@ -142,10 +142,8 @@ export const DocumentValidation = () => {
                   <p className="text-sm text-slate-500">accounts@alphacorp.com</p>
                 </div>
               </div>
-              <div className="flex-1 border-2 border-dashed border-indigo-400 bg-indigo-50/50 flex flex-col items-center justify-center rounded-lg opacity-80 relative overflow-hidden">
-                <p className="text-indigo-600 font-bold text-lg z-10">Document Source Image</p>
-                <p className="text-sm text-indigo-400 mt-2 z-10">OCR engine highlights would appear here.</p>
-                <div className="absolute inset-0 bg-indigo-500/5 mix-blend-multiply pointer-events-none"></div>
+              <div className="flex-1 flex flex-col items-center justify-center rounded-lg relative overflow-hidden bg-white">
+                <img src="/dummy_po.png" alt="Purchase Order" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
