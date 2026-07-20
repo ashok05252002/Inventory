@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, 
@@ -18,21 +19,30 @@ import {
   Bell,
   Search,
   Network,
-  Truck
+  Truck,
+  MessageSquare,
+  ChevronDown
 } from 'lucide-react';
 
 const navItems = [
   { name: 'Dashboard', path: '/', icon: LayoutDashboard },
+  { name: 'Quotations', path: '/quotations', icon: MessageSquare },
   { name: 'Purchase Orders', path: '/purchase-orders', icon: ShoppingCart },
   { name: 'Sales Orders', path: '/sales-orders', icon: FileText },
   { name: 'Document Collection', path: '/document-collection', icon: DownloadCloud },
   { name: 'Document Processing', path: '/document-processing', icon: Files },
   { name: 'Inventory', path: '/inventory', icon: Package },
-  { name: 'Customers', path: '/customers', icon: Users },
-  { name: 'Suppliers', path: '/suppliers', icon: Truck },
-  { name: 'Items', path: '/items', icon: Box },
-  { name: 'Warehouse', path: '/warehouse', icon: Warehouse },
-  { name: 'Master Data Hub', path: '/master-data', icon: Database },
+  { 
+    name: 'Master Data', 
+    icon: Database,
+    subItems: [
+      { name: 'Customers', path: '/customers', icon: Users },
+      { name: 'Suppliers', path: '/suppliers', icon: Truck },
+      { name: 'Items', path: '/items', icon: Box },
+      { name: 'Warehouse', path: '/warehouse', icon: Warehouse },
+      { name: 'Master Data Hub', path: '/master-data', icon: Database },
+    ]
+  },
   { name: 'Reports', path: '/reports', icon: BarChart3 },
   { name: 'Exception Queue', path: '/exception-queue', icon: AlertCircle },
   { name: 'ERP Integration', path: '/erp-integration', icon: Network },
@@ -43,6 +53,13 @@ const navItems = [
 
 export const DashboardLayout = () => {
   const location = useLocation();
+  const [isMasterDataOpen, setIsMasterDataOpen] = useState(
+    location.pathname.startsWith('/customers') ||
+    location.pathname.startsWith('/suppliers') ||
+    location.pathname.startsWith('/items') ||
+    location.pathname.startsWith('/warehouse') ||
+    location.pathname.startsWith('/master-data')
+  );
 
   return (
     <div className="flex h-screen bg-slate-50 text-slate-900 font-sans overflow-hidden">
@@ -60,11 +77,50 @@ export const DashboardLayout = () => {
           <ul className="space-y-1.5 px-3">
             {navItems.map((item) => {
               const Icon = item.icon;
+              
+              if (item.subItems) {
+                return (
+                  <li key={item.name} className="pt-1 pb-1">
+                    <button 
+                      onClick={() => setIsMasterDataOpen(!isMasterDataOpen)}
+                      className={`flex items-center w-full px-3 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group text-slate-400 hover:bg-slate-800/80 hover:text-slate-100 border border-transparent`}
+                    >
+                      <Icon className="w-5 h-5 mr-3 flex-shrink-0 transition-transform duration-200 text-slate-500 group-hover:text-indigo-300" />
+                      <span className="flex-1 text-left">{item.name}</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isMasterDataOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isMasterDataOpen && (
+                      <ul className="mt-1 space-y-1 pl-11 relative before:absolute before:left-5 before:top-0 before:bottom-3 before:w-px before:bg-slate-700">
+                        {item.subItems.map((subItem) => {
+                          const SubIcon = subItem.icon;
+                          const isSubActive = location.pathname === subItem.path || location.pathname.startsWith(subItem.path + '/');
+                          return (
+                            <li key={subItem.name} className="relative">
+                              <div className="absolute left-[-24px] top-1/2 w-3 h-px bg-slate-700"></div>
+                              <Link 
+                                to={subItem.path}
+                                className={`flex items-center px-3 py-2 text-xs font-medium rounded-lg transition-all duration-200 group ${
+                                  isSubActive
+                                    ? 'bg-indigo-500/20 text-indigo-300' 
+                                    : 'text-slate-400 hover:text-slate-200'
+                                }`}
+                              >
+                                {subItem.name}
+                              </Link>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    )}
+                  </li>
+                );
+              }
+
               const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
               return (
                 <li key={item.name}>
                   <Link 
-                    to={item.path} 
+                    to={item.path!} 
                     className={`flex items-center px-3 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${
                       isActive && item.path !== '/' || (item.path === '/' && location.pathname === '/')
                         ? 'bg-indigo-500/20 text-indigo-300 shadow-sm border border-indigo-500/10' 

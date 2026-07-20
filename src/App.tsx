@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { DashboardLayout } from './layouts/DashboardLayout';
 
 import { Dashboard } from './pages/Dashboard';
+import { Quotations } from './pages/Quotations';
+import { QuotationDetails } from './pages/QuotationDetails';
 import { PurchaseOrders } from './pages/PurchaseOrders';
 import { PurchaseOrderDetails } from './pages/PurchaseOrderDetails';
 import { SalesOrders } from './pages/SalesOrders';
@@ -30,6 +32,10 @@ function App() {
       <Routes>
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
+          <Route path="quotations">
+            <Route index element={<Quotations />} />
+            <Route path=":id" element={<QuotationDetails />} />
+          </Route>
           <Route path="purchase-orders">
             <Route index element={<PurchaseOrders />} />
             <Route path=":id" element={<PurchaseOrderDetails />} />
