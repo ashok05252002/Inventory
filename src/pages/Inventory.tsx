@@ -1,0 +1,166 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Package, AlertTriangle, XOctagon, DollarSign, PieChart as PieChartIcon, TrendingUp, Layers, CheckCircle2, Plus } from 'lucide-react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
+import { StatisticCard } from '../components/ui/StatisticCard';
+import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
+import { DataTable, type Column } from '../components/ui/DataTable';
+
+interface InventoryItem {
+  id: string;
+  sku: string;
+  description: string;
+  warehouse: string;
+  available: number;
+  reserved: number;
+  minStock: number;
+  maxStock: number;
+  status: string;
+}
+
+const mockInventory: InventoryItem[] = [
+  { id: '1', sku: 'SKU-8921', description: 'Dell XPS 15 Laptop', warehouse: 'Central Warehouse', available: 120, reserved: 45, minStock: 50, maxStock: 500, status: 'In Stock' },
+  { id: '2', sku: 'SKU-8922', description: 'Logitech MX Master 3S', warehouse: 'DIP Facility', available: 15, reserved: 10, minStock: 20, maxStock: 200, status: 'Low Stock' },
+  { id: '3', sku: 'SKU-8923', description: 'Dell UltraSharp 27 4K', warehouse: 'Central Warehouse', available: 0, reserved: 0, minStock: 10, maxStock: 100, status: 'Out of Stock' },
+  { id: '4', sku: 'SKU-8924', description: 'Ergonomic Office Chair', warehouse: 'JAFZA Freezone', available: 450, reserved: 50, minStock: 100, maxStock: 1000, status: 'In Stock' },
+  { id: '5', sku: 'SKU-8925', description: 'Standing Desk Frame', warehouse: 'DIP Facility', available: 8, reserved: 2, minStock: 15, maxStock: 150, status: 'Low Stock' },
+];
+
+const distributionData = [
+  { name: 'Central Warehouse', value: 45000, fill: '#6366f1' },
+  { name: 'DIP Facility', value: 25000, fill: '#14b8a6' },
+  { name: 'JAFZA Freezone', value: 30000, fill: '#f59e0b' },
+];
+const COLORS = ['#6366f1', '#14b8a6', '#f59e0b'];
+
+const columns: Column<InventoryItem>[] = [
+  { 
+    header: 'SKU & Description', 
+    accessor: (row) => (
+      <div className="flex flex-col">
+        <span className="font-bold text-indigo-600">{row.sku}</span>
+        <span className="text-sm text-slate-500 font-medium">{row.description}</span>
+      </div>
+    ) 
+  },
+  { header: 'Warehouse', accessor: 'warehouse', className: 'font-semibold text-slate-700' },
+  { 
+    header: 'Availability', 
+    accessor: (row) => (
+      <div className="flex flex-col">
+        <span className="text-sm font-bold text-slate-800">{row.available} Available</span>
+        <span className="text-xs font-medium text-slate-500">{row.reserved} Reserved</span>
+      </div>
+    ),
+    className: 'text-right'
+  },
+  { 
+    header: 'Thresholds (Min/Max)', 
+    accessor: (row) => (
+      <span className="text-sm font-medium text-slate-600">{row.minStock} / {row.maxStock}</span>
+    ),
+    className: 'text-right'
+  },
+  { 
+    header: 'Status', 
+    accessor: (row) => {
+      const isOk = row.status === 'In Stock';
+      const isLow = row.status === 'Low Stock';
+      const isOut = row.status === 'Out of Stock';
+      
+      const Icon = isOk ? CheckCircle2 : (isLow ? AlertTriangle : XOctagon);
+      const color = isOk ? 'text-emerald-600 bg-emerald-50 border-emerald-200' : 
+                   (isLow ? 'text-amber-600 bg-amber-50 border-amber-200' : 'text-rose-600 bg-rose-50 border-rose-200');
+                   
+      // Need CheckCircle2 import, but let's just use CSS. Wait, I imported CheckCircle2 in others but not here.
+      // I'll import it above or just use standard HTML.
+      return (
+        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold border ${color} shadow-sm whitespace-nowrap`}>
+          {row.status}
+        </span>
+      );
+    } 
+  },
+];
+
+export const Inventory = () => {
+  return (
+    <div className="space-y-8 animate-in fade-in duration-500 pb-12">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 tracking-tight">Inventory Dashboard</h1>
+          <p className="text-slate-500 mt-1 font-medium">Real-time overview of your stock levels and warehouse distribution.</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
+            <Plus className="w-4 h-4" /> Receive Stock
+          </button>
+        </div>
+      </div>
+
+      {/* KPI Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <StatisticCard 
+          title="Total Stock Value" value="AED 4.2M" trend="+5.2%" isPositive={true} trendLabel="vs last month"
+          icon={DollarSign} colorClass="text-emerald-500" bgClass="bg-emerald-50" borderClass="border-emerald-100" gradientClass="from-emerald-500/20 to-emerald-500/5"
+        />
+        <StatisticCard 
+          title="Total Active SKUs" value="1,248" trend="+12 New" isPositive={true} trendLabel="vs last week"
+          icon={Package} colorClass="text-indigo-500" bgClass="bg-indigo-50" borderClass="border-indigo-100" gradientClass="from-indigo-500/20 to-indigo-500/5"
+        />
+        <StatisticCard 
+          title="Low Stock Items" value="15" trend="Action Required" isPositive={false} trendLabel="Below Min Level"
+          icon={AlertTriangle} colorClass="text-amber-500" bgClass="bg-amber-50" borderClass="border-amber-100" gradientClass="from-amber-500/20 to-amber-500/5"
+        />
+        <StatisticCard 
+          title="Out of Stock" value="3" trend="Critical" isPositive={false} trendLabel="Zero Availability"
+          icon={XOctagon} colorClass="text-rose-500" bgClass="bg-rose-50" borderClass="border-rose-100" gradientClass="from-rose-500/20 to-rose-500/5"
+        />
+      </div>
+
+      {/* Dashboard Content */}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        {/* Inventory Table */}
+        <Card className="xl:col-span-2">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle><Layers className="w-5 h-5 text-indigo-500" /> Real-time Stock Levels</CardTitle>
+            <div className="flex gap-2">
+              <select className="text-sm font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 outline-none">
+                <option>All Warehouses</option>
+                <option>Central Warehouse</option>
+                <option>DIP Facility</option>
+              </select>
+            </div>
+          </CardHeader>
+          <CardContent className="p-0">
+            <DataTable data={mockInventory} columns={columns} keyExtractor={(row) => row.id} />
+            <div className="p-4 bg-slate-50 border-t border-slate-100 text-center">
+               <Link to="/inventory/list" className="text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors">View All Inventory</Link>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Warehouse Distribution Chart */}
+        <Card>
+          <CardHeader>
+            <CardTitle><PieChartIcon className="w-5 h-5 text-purple-500" /> Warehouse Distribution</CardTitle>
+          </CardHeader>
+          <CardContent className="h-[400px] flex items-center justify-center flex-col">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={distributionData} cx="50%" cy="50%" innerRadius={80} outerRadius={120} paddingAngle={5} dataKey="value" stroke="none">
+                  {distributionData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <RechartsTooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} formatter={(value) => `AED ${value.toLocaleString()}`} />
+                <Legend verticalAlign="bottom" height={36} iconType="circle" />
+              </PieChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+};
