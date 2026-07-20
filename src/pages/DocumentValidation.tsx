@@ -142,8 +142,81 @@ export const DocumentValidation = () => {
                   <p className="text-sm text-slate-500">accounts@alphacorp.com</p>
                 </div>
               </div>
-              <div className="flex-1 flex flex-col items-center justify-center rounded-lg relative overflow-hidden bg-white">
-                <img src="/dummy_po.png" alt="Purchase Order" className="w-full h-full object-cover" />
+              <div className="flex-1 flex flex-col relative bg-white">
+                <div className="mb-6 flex justify-between text-sm">
+                  <div>
+                    <p className="font-bold text-slate-700 mb-1">Vendor:</p>
+                    <p className="text-slate-600 font-medium">Your Company LLC</p>
+                    <p className="text-slate-500">Dubai, UAE</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-slate-700 mb-1">Shipping To:</p>
+                    <p className="text-slate-600 font-medium">Alpha Corp HQ</p>
+                    <p className="text-slate-500">Abu Dhabi, UAE</p>
+                  </div>
+                </div>
+                
+                <table className="w-full text-left mb-8">
+                  <thead className="border-b-2 border-slate-800 text-slate-800">
+                    <tr>
+                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider">Item Description</th>
+                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider text-center">Qty</th>
+                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider text-right">Unit Price</th>
+                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider text-right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 text-slate-700">
+                    <tr>
+                      <td className="py-4 px-2">
+                        <p className="font-bold text-slate-900">Dell XPS 15</p>
+                        <p className="text-xs text-slate-500">SKU-8921</p>
+                      </td>
+                      <td className="py-4 px-2 text-center font-medium">2</td>
+                      <td className="py-4 px-2 text-right">AED 6,500.00</td>
+                      <td className="py-4 px-2 text-right font-bold text-slate-900">AED 13,000.00</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-2">
+                        <p className="font-bold text-slate-900">MX Master Mouse</p>
+                        <p className="text-xs text-slate-500">SKU-8922</p>
+                      </td>
+                      <td className="py-4 px-2 text-center font-medium">4</td>
+                      <td className="py-4 px-2 text-right">AED 400.00</td>
+                      <td className="py-4 px-2 text-right font-bold text-slate-900">AED 1,600.00</td>
+                    </tr>
+                    <tr>
+                      <td className="py-4 px-2">
+                        <p className="font-bold text-slate-900">Extra Warranty</p>
+                        <p className="text-xs text-slate-500">SKU-9999</p>
+                      </td>
+                      <td className="py-4 px-2 text-center font-medium">1</td>
+                      <td className="py-4 px-2 text-right">AED 500.00</td>
+                      <td className="py-4 px-2 text-right font-bold text-slate-900">AED 500.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div className="flex justify-end mt-auto pb-12">
+                  <div className="w-64">
+                    <div className="flex justify-between py-2 border-b border-slate-200">
+                      <span className="text-slate-600 font-medium">Subtotal:</span>
+                      <span className="font-bold text-slate-800">AED 15,100.00</span>
+                    </div>
+                    <div className="flex justify-between py-2 border-b border-slate-200">
+                      <span className="text-slate-600 font-medium">VAT (5%):</span>
+                      <span className="font-bold text-slate-800">AED 755.00</span>
+                    </div>
+                    <div className="flex justify-between py-3 bg-slate-50 px-3 rounded-lg mt-2">
+                      <span className="font-black text-slate-900">Total:</span>
+                      <span className="font-black text-indigo-700">AED 15,855.00</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="absolute bottom-0 left-0 w-full pt-4 border-t border-slate-200 text-xs text-slate-400 flex justify-between">
+                  <p>Authorized Signature: _______________________</p>
+                  <p>Page 1 of 1</p>
+                </div>
               </div>
             </div>
           </div>
