@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import { UserPlus, Search, Filter, Shield, MoreVertical, CheckCircle2, XCircle } from 'lucide-react';
 import { DataTable, type Column } from '../components/ui/DataTable';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 import { StatisticCard } from '../components/ui/StatisticCard';
 
 interface UserData {

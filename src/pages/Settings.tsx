@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   Building2, 
   Scan, 
@@ -12,7 +12,7 @@ import {
   Database,
   HardDrive
 } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 
 const settingTabs = [
   { id: 'company', label: 'Company Profile', icon: Building2 },

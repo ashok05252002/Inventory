@@ -1,6 +1,5 @@
-import React from 'react';
-import { Plus, Search, MapPin, Package, AlertTriangle, Building2, CheckCircle2 } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
+import { Plus, MapPin, AlertTriangle, Building2, CheckCircle2 } from 'lucide-react';
+import { Card, CardHeader, CardContent } from '../components/ui/Card';
 
 const warehouses = [
   { 

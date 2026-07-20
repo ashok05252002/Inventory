@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const SalesOrders = () => {
   return (
     <div className="space-y-6">

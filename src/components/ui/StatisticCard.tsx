@@ -4,18 +4,18 @@ import { ArrowUpRight, ArrowDownRight, type LucideIcon } from 'lucide-react';
 interface StatisticCardProps {
   title: string;
   value: string;
-  trend: string;
-  isPositive: boolean;
-  trendLabel: string;
+  trend?: string;
+  isPositive?: boolean;
+  trendLabel?: string;
   icon: LucideIcon;
-  colorClass: string;
-  bgClass: string;
-  borderClass: string;
-  gradientClass: string;
+  colorClass?: string;
+  bgClass?: string;
+  borderClass?: string;
+  gradientClass?: string;
 }
 
 export const StatisticCard = ({
-  title, value, trend, isPositive, trendLabel, icon: Icon, colorClass, bgClass, borderClass, gradientClass
+  title, value, trend = '0%', isPositive = true, trendLabel = 'vs last month', icon: Icon, colorClass = 'text-indigo-500', bgClass = 'bg-indigo-50', borderClass = 'border-slate-200', gradientClass = 'from-indigo-500/5 to-purple-500/5'
 }: StatisticCardProps) => {
   return (
     <div className={`bg-white p-6 rounded-2xl border ${borderClass} shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group cursor-pointer`}>
