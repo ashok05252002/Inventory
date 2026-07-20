@@ -1,4 +1,3 @@
-import React from 'react';
 import { Search, Filter, AlertCircle, Copy, UserX, PackageX, DollarSign, Layers, Database, RotateCw, CheckCircle2, UserPlus, XCircle } from 'lucide-react';
 import { DataTable, type Column } from '../components/ui/DataTable';
 import { Card, CardContent } from '../components/ui/Card';
@@ -103,7 +102,7 @@ export const ExceptionQueue = () => {
     },
     { 
       header: 'Actions', 
-      accessor: (row) => (
+      accessor: () => (
         <div className="flex items-center gap-1 justify-end">
           <button className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors" title="Retry Processing">
             <RotateCw className="w-4 h-4" />

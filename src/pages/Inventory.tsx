@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { Package, AlertTriangle, XOctagon, DollarSign, PieChart as PieChartIcon, TrendingUp, Layers, CheckCircle2, Plus } from 'lucide-react';
+import { Package, AlertTriangle, XOctagon, DollarSign, PieChart as PieChartIcon, Layers, Plus } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import { StatisticCard } from '../components/ui/StatisticCard';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
@@ -66,9 +65,7 @@ const columns: Column<InventoryItem>[] = [
     accessor: (row) => {
       const isOk = row.status === 'In Stock';
       const isLow = row.status === 'Low Stock';
-      const isOut = row.status === 'Out of Stock';
       
-      const Icon = isOk ? CheckCircle2 : (isLow ? AlertTriangle : XOctagon);
       const color = isOk ? 'text-emerald-600 bg-emerald-50 border-emerald-200' : 
                    (isLow ? 'text-amber-600 bg-amber-50 border-amber-200' : 'text-rose-600 bg-rose-50 border-rose-200');
                    
@@ -150,11 +147,11 @@ export const Inventory = () => {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie data={distributionData} cx="50%" cy="50%" innerRadius={80} outerRadius={120} paddingAngle={5} dataKey="value" stroke="none">
-                  {distributionData.map((entry, index) => (
+                  {distributionData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <RechartsTooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} formatter={(value) => `AED ${value.toLocaleString()}`} />
+                <RechartsTooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} formatter={(value: any) => `AED ${value?.toLocaleString()}`} />
                 <Legend verticalAlign="bottom" height={36} iconType="circle" />
               </PieChart>
             </ResponsiveContainer>

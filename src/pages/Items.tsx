@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Plus, Search, Filter, Download, Edit, Trash2, Box, Tag } from 'lucide-react';
+import { useState } from 'react';
+import { Plus, Search, Filter, Download, Edit, Trash2 } from 'lucide-react';
 import { DataTable, type Column } from '../components/ui/DataTable';
 import { Card, CardContent } from '../components/ui/Card';
 import { Modal } from '../components/ui/Modal';

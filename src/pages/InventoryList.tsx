@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
 import { Search, Filter, Download, ArrowRightLeft, Edit, AlertTriangle, XOctagon, CheckCircle2, Plus } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { DataTable, type Column } from '../components/ui/DataTable';
 import { Card, CardContent } from '../components/ui/Card';
 
@@ -50,7 +48,6 @@ export const InventoryList = () => {
       accessor: (row) => {
         const isOk = row.status === 'In Stock';
         const isLow = row.status === 'Low Stock';
-        const isOut = row.status === 'Out of Stock';
         
         const Icon = isOk ? CheckCircle2 : (isLow ? AlertTriangle : XOctagon);
         const color = isOk ? 'text-emerald-600 bg-emerald-50 border-emerald-200' : 
@@ -65,7 +62,7 @@ export const InventoryList = () => {
     },
     { 
       header: 'Actions', 
-      accessor: (row) => (
+      accessor: () => (
         <div className="flex items-center gap-1 justify-end">
           <button className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors" title="Transfer Stock">
             <ArrowRightLeft className="w-4 h-4" />

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Printer, Download, Edit, Building2, MapPin, CheckCircle2, FileText, AlertTriangle, Activity } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';

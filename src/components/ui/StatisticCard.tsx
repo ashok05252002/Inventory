@@ -1,4 +1,3 @@
-import React from 'react';
 import { ArrowUpRight, ArrowDownRight, type LucideIcon } from 'lucide-react';
 
 interface StatisticCardProps {

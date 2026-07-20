@@ -1,6 +1,5 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Edit, Trash2, Building2, MapPin, CheckCircle2, Phone, Mail, DollarSign, Activity, FileText } from 'lucide-react';
+import { ArrowLeft, Edit, Trash2, Building2, MapPin, CheckCircle2, Phone, Mail, Activity, FileText } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 
 export const CustomerDetails = () => {

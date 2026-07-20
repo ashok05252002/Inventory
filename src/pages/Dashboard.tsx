@@ -1,11 +1,10 @@
-import React from 'react';
 import { 
-  ArrowUpRight, ArrowDownRight, Package, ShoppingCart, Users, DollarSign, Activity, TrendingUp, Bell, 
+  Package, ShoppingCart, Users, Activity, TrendingUp, Bell, 
   Files, FileWarning, Link2, UploadCloud, FolderSearch, Mail, RefreshCw, AlertCircle, CheckCircle2, Clock, XCircle 
 } from 'lucide-react';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer,
-  BarChart, Bar, PieChart, Pie, Cell, LineChart, Line, Legend
+  BarChart, Bar, PieChart, Pie, Cell, Legend
 } from 'recharts';
 
 import { StatisticCard } from '../components/ui/StatisticCard';
@@ -199,7 +198,7 @@ export const Dashboard = () => {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie data={customerDistributionData} cx="50%" cy="50%" outerRadius={100} dataKey="value" stroke="none" labelLine={false}>
-                  {customerDistributionData.map((entry, index) => (
+                  {customerDistributionData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>

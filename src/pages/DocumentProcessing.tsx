@@ -1,4 +1,3 @@
-import React from 'react';
 import { UploadCloud, FileType, FileText, FileSpreadsheet, Eye, MoreHorizontal, CheckCircle2, AlertCircle, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DataTable, type Column } from '../components/ui/DataTable';

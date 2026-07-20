@@ -1,5 +1,4 @@
-import React from 'react';
-import { Search, Filter, Download, Shield, User, ShieldAlert, MonitorPlay } from 'lucide-react';
+import { Search, Filter, Download, Shield, MonitorPlay } from 'lucide-react';
 import { DataTable, type Column } from '../components/ui/DataTable';
 import { Card, CardContent } from '../components/ui/Card';
 

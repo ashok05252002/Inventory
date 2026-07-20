@@ -1,6 +1,5 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { CheckCircle2, XCircle, FileText, ArrowRight, CornerDownRight, RotateCw, AlertTriangle, ShieldCheck, Clock, Zap, ArrowLeft, ZoomIn, ZoomOut } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, RotateCw, AlertTriangle, ShieldCheck, Clock, Zap, ArrowLeft, ZoomIn, ZoomOut } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { DataTable, type Column } from '../components/ui/DataTable';
 

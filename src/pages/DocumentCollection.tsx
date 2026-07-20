@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Mail, FolderSync, Clock, RefreshCw, FileText, AlertCircle, HardDrive, DownloadCloud, Activity, CheckCircle2, ShieldCheck, Server } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, FolderSync, Clock, RefreshCw, FileText, AlertCircle, HardDrive, DownloadCloud, Activity, ShieldCheck, Server } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { DataTable, type Column } from '../components/ui/DataTable';
 

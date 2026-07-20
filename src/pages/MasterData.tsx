@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Database, Coins, CreditCard, Receipt, Scale, MapPin, Building, Shield, Settings2, Users } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 import { DataTable, type Column } from '../components/ui/DataTable';
 
 const masterTabs = [
