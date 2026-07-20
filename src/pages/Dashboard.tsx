@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { 
   Package, ShoppingCart, Users, Activity, TrendingUp, Bell, 
   Files, FileWarning, Link2, UploadCloud, FolderSearch, Mail, RefreshCw, AlertCircle, CheckCircle2, Clock, XCircle 
@@ -116,16 +117,16 @@ export const Dashboard = () => {
         <h2 className="text-lg font-bold text-slate-800 mb-4">Quick Actions</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {[
-            { label: 'Upload PO', icon: UploadCloud, color: 'text-indigo-600', bg: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-100' },
-            { label: 'Scan Folder', icon: FolderSearch, color: 'text-blue-600', bg: 'bg-blue-50 hover:bg-blue-100 border-blue-100' },
-            { label: 'Sync Email', icon: Mail, color: 'text-emerald-600', bg: 'bg-emerald-50 hover:bg-emerald-100 border-emerald-100' },
-            { label: 'Retry Failed', icon: RefreshCw, color: 'text-amber-600', bg: 'bg-amber-50 hover:bg-amber-100 border-amber-100' },
-            { label: 'Exception Queue', icon: AlertCircle, color: 'text-rose-600', bg: 'bg-rose-50 hover:bg-rose-100 border-rose-100' },
+            { label: 'Upload PO', icon: UploadCloud, path: '/purchase-orders', color: 'text-indigo-600', bg: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-100' },
+            { label: 'Scan Folder', icon: FolderSearch, path: '/document-collection', color: 'text-blue-600', bg: 'bg-blue-50 hover:bg-blue-100 border-blue-100' },
+            { label: 'Sync Email', icon: Mail, path: '/document-collection', color: 'text-emerald-600', bg: 'bg-emerald-50 hover:bg-emerald-100 border-emerald-100' },
+            { label: 'Retry Failed', icon: RefreshCw, path: '/document-collection', color: 'text-amber-600', bg: 'bg-amber-50 hover:bg-amber-100 border-amber-100' },
+            { label: 'Exception Queue', icon: AlertCircle, path: '/exception-queue', color: 'text-rose-600', bg: 'bg-rose-50 hover:bg-rose-100 border-rose-100' },
           ].map((action, idx) => (
-            <button key={idx} className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${action.bg} group`}>
+            <Link to={action.path} key={idx} className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer ${action.bg} group`}>
               <action.icon className={`w-6 h-6 mb-2 ${action.color} group-hover:scale-110 transition-transform duration-300`} />
               <span className={`text-sm font-semibold ${action.color}`}>{action.label}</span>
-            </button>
+            </Link>
           ))}
         </div>
       </section>

@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Plus, Filter, Download, Search, CheckCircle2, Clock, XCircle, Eye, Edit, RotateCw, Trash2, Cloud, CloudOff, RefreshCw } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { DataTable, type Column } from '../components/ui/DataTable';
 import { Card, CardContent } from '../components/ui/Card';
+import { Modal } from '../components/ui/Modal';
 
 interface PurchaseOrder {
   id: string;
@@ -89,6 +91,7 @@ const columns: Column<PurchaseOrder>[] = [
 ];
 
 export const PurchaseOrders = () => {
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   return (
     <div className="space-y-6 h-full flex flex-col animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -100,7 +103,9 @@ export const PurchaseOrders = () => {
           <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-50 hover:border-slate-300 shadow-sm transition-all">
             <Download className="w-4 h-4 text-slate-400" /> Export
           </button>
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
+          <button 
+            onClick={() => setIsUploadModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
             <Plus className="w-4 h-4" /> Upload PO
           </button>
         </div>
@@ -165,6 +170,24 @@ export const PurchaseOrders = () => {
           </div>
         </div>
       </Card>
+
+      <Modal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} title="Upload Purchase Order">
+        <div className="space-y-4">
+          <p className="text-sm text-slate-500">Upload a PDF or Image of the Purchase Order to process it automatically via OCR.</p>
+          <div className="border-2 border-dashed border-slate-300 rounded-xl p-12 flex flex-col items-center justify-center text-center hover:bg-slate-50 hover:border-indigo-300 transition-colors cursor-pointer group">
+            <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <Cloud className="w-8 h-8 text-indigo-500" />
+            </div>
+            <p className="text-base font-bold text-slate-700">Click to browse or drag and drop</p>
+            <p className="text-sm text-slate-500 mt-1">Supported formats: PDF, PNG, JPG (Max 10MB)</p>
+          </div>
+          <div className="flex justify-end pt-4">
+            <button onClick={() => setIsUploadModalOpen(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

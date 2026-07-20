@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Package, AlertTriangle, XOctagon, DollarSign, PieChart as PieChartIcon, Layers, Plus } from 'lucide-react';
+import { Package, AlertTriangle, XOctagon, DollarSign, PieChart as PieChartIcon, Layers, Plus, ScanLine, FileText } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip, Legend } from 'recharts';
 import { StatisticCard } from '../components/ui/StatisticCard';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { DataTable, type Column } from '../components/ui/DataTable';
+import { Modal } from '../components/ui/Modal';
 
 interface InventoryItem {
   id: string;
@@ -81,6 +83,7 @@ const columns: Column<InventoryItem>[] = [
 ];
 
 export const Inventory = () => {
+  const [isReceiveModalOpen, setIsReceiveModalOpen] = useState(false);
   return (
     <div className="space-y-8 animate-in fade-in duration-500 pb-12">
       {/* Header */}
@@ -90,7 +93,9 @@ export const Inventory = () => {
           <p className="text-slate-500 mt-1 font-medium">Real-time overview of your stock levels and warehouse distribution.</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
+          <button 
+            onClick={() => setIsReceiveModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
             <Plus className="w-4 h-4" /> Receive Stock
           </button>
         </div>
@@ -158,6 +163,34 @@ export const Inventory = () => {
           </CardContent>
         </Card>
       </div>
+
+      <Modal isOpen={isReceiveModalOpen} onClose={() => setIsReceiveModalOpen(false)} title="Receive Stock">
+        <div className="space-y-4">
+          <p className="text-sm text-slate-500">Scan or manually enter the PO / ASN number to start receiving items into the warehouse.</p>
+          <div className="space-y-3">
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-1">Purchase Order or ASN No.</label>
+              <div className="relative">
+                <input type="text" placeholder="e.g. PO-2024-001" className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
+                <FileText className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              </div>
+            </div>
+            <div className="border-2 border-dashed border-slate-300 rounded-xl p-6 flex flex-col items-center justify-center text-center hover:bg-slate-50 hover:border-indigo-300 transition-colors cursor-pointer mt-4">
+              <ScanLine className="w-8 h-8 text-indigo-500 mb-2" />
+              <p className="text-sm font-bold text-slate-700">Scan Barcode</p>
+              <p className="text-xs text-slate-500 mt-1">Ensure scanner is connected</p>
+            </div>
+          </div>
+          <div className="flex justify-end gap-2 pt-4">
+            <button onClick={() => setIsReceiveModalOpen(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors">
+              Cancel
+            </button>
+            <button className="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-all">
+              Proceed
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

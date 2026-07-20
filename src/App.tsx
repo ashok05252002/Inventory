@@ -11,6 +11,8 @@ import { Inventory } from './pages/Inventory';
 import { InventoryList } from './pages/InventoryList';
 import { Customers } from './pages/Customers';
 import { CustomerDetails } from './pages/CustomerDetails';
+import { Suppliers } from './pages/Suppliers';
+import { SupplierDetails } from './pages/SupplierDetails';
 import { Items } from './pages/Items';
 import { Warehouse } from './pages/Warehouse';
 import { Reports } from './pages/Reports';
@@ -46,6 +48,10 @@ function App() {
           <Route path="customers">
             <Route index element={<Customers />} />
             <Route path=":id" element={<CustomerDetails />} />
+          </Route>
+          <Route path="suppliers">
+            <Route index element={<Suppliers />} />
+            <Route path=":id" element={<SupplierDetails />} />
           </Route>
           <Route path="items" element={<Items />} />
           <Route path="warehouse" element={<Warehouse />} />

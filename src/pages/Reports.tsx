@@ -158,7 +158,7 @@ export const Reports = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
+      <div className="inline-flex items-center p-1.5 bg-white/60 backdrop-blur-md border border-slate-200/80 rounded-2xl overflow-x-auto max-w-full shadow-sm custom-scrollbar">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -166,13 +166,14 @@ export const Reports = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-bold whitespace-nowrap transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-300 ${
                 isActive 
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200' 
-                  : 'bg-white text-slate-500 hover:text-slate-800 hover:bg-slate-50 border border-slate-200'
+                  ? 'bg-white text-indigo-700 shadow-md ring-1 ring-slate-900/5 scale-105' 
+                  : 'text-slate-500 hover:text-slate-800 hover:bg-white/50'
               }`}
             >
-              <Icon className="w-4 h-4" /> {tab.label}
+              <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-indigo-600' : 'text-slate-400'}`} /> 
+              {tab.label}
             </button>
           )
         })}

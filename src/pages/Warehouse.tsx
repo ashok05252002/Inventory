@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Plus, MapPin, AlertTriangle, Building2, CheckCircle2 } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '../components/ui/Card';
+import { Modal } from '../components/ui/Modal';
 
 const warehouses = [
   { 
@@ -38,6 +40,7 @@ const warehouses = [
 ];
 
 export const Warehouse = () => {
+  const [isAddWarehouseOpen, setIsAddWarehouseOpen] = useState(false);
   return (
     <div className="space-y-6 h-full flex flex-col animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -46,7 +49,9 @@ export const Warehouse = () => {
           <p className="text-sm text-slate-500 mt-1 font-medium">Monitor and manage physical storage locations and capacity.</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
+          <button 
+            onClick={() => setIsAddWarehouseOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
             <Plus className="w-4 h-4" /> Add Warehouse
           </button>
         </div>
@@ -111,6 +116,37 @@ export const Warehouse = () => {
           )
         })}
       </div>
+
+      <Modal isOpen={isAddWarehouseOpen} onClose={() => setIsAddWarehouseOpen(false)} title="Add Warehouse">
+        <div className="space-y-4">
+          <div className="space-y-3">
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-1">Warehouse Name <span className="text-rose-500">*</span></label>
+              <input type="text" placeholder="e.g. East Coast Hub" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-1">Type</label>
+              <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all">
+                <option>Main Distribution Center</option>
+                <option>Secondary Storage</option>
+                <option>Bonded Warehouse</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-1">Address</label>
+              <textarea placeholder="Full address" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all resize-none" rows={3}></textarea>
+            </div>
+          </div>
+          <div className="flex justify-end gap-2 pt-4">
+            <button onClick={() => setIsAddWarehouseOpen(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors">
+              Cancel
+            </button>
+            <button className="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-all">
+              Save Warehouse
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

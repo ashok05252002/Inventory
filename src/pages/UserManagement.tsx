@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { UserPlus, Search, Filter, Shield, MoreVertical, CheckCircle2, XCircle } from 'lucide-react';
 import { DataTable, type Column } from '../components/ui/DataTable';
 import { Card, CardContent } from '../components/ui/Card';
 import { StatisticCard } from '../components/ui/StatisticCard';
+import { Modal } from '../components/ui/Modal';
 
 interface UserData {
   id: string;
@@ -23,6 +25,7 @@ const mockUsers: UserData[] = [
 ];
 
 export const UserManagement = () => {
+  const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
 
   const columns: Column<UserData>[] = [
     { 
@@ -88,7 +91,9 @@ export const UserManagement = () => {
           <p className="text-sm text-slate-500 mt-1 font-medium">Manage user access, roles, and granular security permissions.</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
+          <button 
+            onClick={() => setIsInviteModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5">
             <UserPlus className="w-4 h-4" /> Invite User
           </button>
         </div>
@@ -147,6 +152,45 @@ export const UserManagement = () => {
           </div>
         </div>
       </Card>
+
+      <Modal isOpen={isInviteModalOpen} onClose={() => setIsInviteModalOpen(false)} title="Invite New User">
+        <div className="space-y-4">
+          <p className="text-sm text-slate-500">Send an invitation email to a new team member to access the system.</p>
+          <div className="space-y-3">
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-1">Email Address <span className="text-rose-500">*</span></label>
+              <input type="email" placeholder="e.g. user@nexuserp.com" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1">Role</label>
+                <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all">
+                  <option>System Admin</option>
+                  <option>Manager</option>
+                  <option>Viewer</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-1">Department</label>
+                <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all">
+                  <option>IT</option>
+                  <option>Sales</option>
+                  <option>Finance</option>
+                  <option>Logistics</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-end gap-2 pt-4">
+            <button onClick={() => setIsInviteModalOpen(false)} className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors">
+              Cancel
+            </button>
+            <button className="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-all">
+              Send Invite
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

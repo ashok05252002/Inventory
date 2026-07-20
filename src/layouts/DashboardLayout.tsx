@@ -17,7 +17,8 @@ import {
   UserCog,
   Bell,
   Search,
-  Network
+  Network,
+  Truck
 } from 'lucide-react';
 
 const navItems = [
@@ -28,6 +29,7 @@ const navItems = [
   { name: 'Document Processing', path: '/document-processing', icon: Files },
   { name: 'Inventory', path: '/inventory', icon: Package },
   { name: 'Customers', path: '/customers', icon: Users },
+  { name: 'Suppliers', path: '/suppliers', icon: Truck },
   { name: 'Items', path: '/items', icon: Box },
   { name: 'Warehouse', path: '/warehouse', icon: Warehouse },
   { name: 'Master Data Hub', path: '/master-data', icon: Database },
@@ -48,29 +50,28 @@ export const DashboardLayout = () => {
       <aside className="w-64 bg-slate-900 text-white border-r border-slate-800 flex-col hidden lg:flex shadow-2xl z-20 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 to-purple-500/10 pointer-events-none"></div>
         <div className="h-16 flex items-center px-6 border-b border-slate-800/60 relative z-10 backdrop-blur-sm bg-slate-900/50">
-          <div className="flex items-center gap-3 text-indigo-400 group cursor-pointer">
-            <div className="p-1.5 bg-indigo-500/20 rounded-lg group-hover:bg-indigo-500/30 transition-colors">
-              <Box className="w-6 h-6" />
+          <div className="flex items-center group cursor-pointer w-full h-full py-2.5">
+            <div className="bg-white rounded-lg p-1.5 h-full w-full flex items-center justify-center shadow-sm">
+              <img src="/logo.png" alt="PRO-BIZ Logo" className="h-full object-contain" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-white group-hover:text-indigo-50 transition-colors">NexusERP</span>
           </div>
         </div>
         <nav className="flex-1 overflow-y-auto py-6 custom-scrollbar relative z-10">
           <ul className="space-y-1.5 px-3">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = location.pathname === item.path;
+              const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
               return (
                 <li key={item.name}>
                   <Link 
                     to={item.path} 
                     className={`flex items-center px-3 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 group ${
-                      isActive 
+                      isActive && item.path !== '/' || (item.path === '/' && location.pathname === '/')
                         ? 'bg-indigo-500/20 text-indigo-300 shadow-sm border border-indigo-500/10' 
                         : 'text-slate-400 hover:bg-slate-800/80 hover:text-slate-100 border border-transparent'
                     }`}
                   >
-                    <Icon className={`w-5 h-5 mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110 ${isActive ? 'text-indigo-400' : 'text-slate-500 group-hover:text-indigo-300'}`} />
+                    <Icon className={`w-5 h-5 mr-3 flex-shrink-0 transition-transform duration-200 group-hover:scale-110 ${isActive && item.path !== '/' || (item.path === '/' && location.pathname === '/') ? 'text-indigo-400' : 'text-slate-500 group-hover:text-indigo-300'}`} />
                     {item.name}
                   </Link>
                 </li>
