@@ -92,7 +92,6 @@ export const DashboardLayout = () => {
                     {isMasterDataOpen && (
                       <ul className="mt-1 space-y-1 pl-11 relative before:absolute before:left-5 before:top-0 before:bottom-3 before:w-px before:bg-slate-700">
                         {item.subItems.map((subItem) => {
-                          const SubIcon = subItem.icon;
                           const isSubActive = location.pathname === subItem.path || location.pathname.startsWith(subItem.path + '/');
                           return (
                             <li key={subItem.name} className="relative">

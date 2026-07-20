@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Edit, Share2, CheckCircle2, XCircle, Printer, Download, Mail, Copy, Link as LinkIcon, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Edit, Share2, CheckCircle2, XCircle, Printer, Mail, Copy, Link as LinkIcon } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 import { Modal } from '../components/ui/Modal';

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { CheckCircle2, XCircle, ArrowRight, RotateCw, AlertTriangle, ShieldCheck, Clock, Zap, ArrowLeft, ZoomIn, ZoomOut, Link as LinkIcon, FileText, Check } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, RotateCw, AlertTriangle, ShieldCheck, Clock, Zap, ArrowLeft, ZoomIn, ZoomOut, Link as LinkIcon, FileText } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
 
 interface QuoteItem {
@@ -224,7 +224,7 @@ export const DocumentValidation = () => {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
-                      {poItems.map((po, index) => {
+                      {poItems.map((po) => {
                         const qItem = po.mappedQuoteItemId ? quoteData.find(q => q.id === po.mappedQuoteItemId) : null;
                         const isQtyMatch = qItem && qItem.qty === po.extractedQty;
                         const isPriceMatch = qItem && qItem.price === po.extractedPrice;
