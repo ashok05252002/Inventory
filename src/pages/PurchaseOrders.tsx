@@ -17,11 +17,11 @@ interface PurchaseOrder {
 }
 
 const mockData: PurchaseOrder[] = [
-  { id: 'PO-2026-001', customer: 'TechNova Solutions', poDate: 'Jul 20, 2026', deliveryDate: 'Aug 05, 2026', amount: 'AED 12,450.00', status: 'Approved', erpStatus: 'Synced', source: 'Email' },
-  { id: 'PO-2026-002', customer: 'Global Logistics Corp', poDate: 'Jul 19, 2026', deliveryDate: 'Aug 10, 2026', amount: 'AED 4,200.00', status: 'Pending', erpStatus: 'Pending', source: 'Manual' },
-  { id: 'PO-2026-003', customer: 'Apex Office Supplies', poDate: 'Jul 18, 2026', deliveryDate: 'Jul 25, 2026', amount: 'AED 850.00', status: 'Approved', erpStatus: 'Synced', source: 'Portal' },
-  { id: 'PO-2026-004', customer: 'Nexus Hardware', poDate: 'Jul 17, 2026', deliveryDate: 'Jul 30, 2026', amount: 'AED 24,900.00', status: 'Rejected', erpStatus: 'Failed', source: 'API' },
-  { id: 'PO-2026-005', customer: 'Quantum Dynamics', poDate: 'Jul 16, 2026', deliveryDate: 'Aug 15, 2026', amount: 'AED 134,000.00', status: 'Processing', erpStatus: 'Syncing', source: 'Email' },
+  { id: 'PO-2026-001', customer: 'CableTech Mfg', poDate: 'Jul 20, 2026', deliveryDate: 'Aug 05, 2026', amount: 'AED 12,450.00', status: 'Approved', erpStatus: 'Synced', source: 'Email' },
+  { id: 'PO-2026-002', customer: 'ProVideo Connectors', poDate: 'Jul 19, 2026', deliveryDate: 'Aug 10, 2026', amount: 'AED 4,200.00', status: 'Pending', erpStatus: 'Pending', source: 'Manual' },
+  { id: 'PO-2026-003', customer: 'Cinema Wire Corp', poDate: 'Jul 18, 2026', deliveryDate: 'Jul 25, 2026', amount: 'AED 850.00', status: 'Approved', erpStatus: 'Synced', source: 'Portal' },
+  { id: 'PO-2026-004', customer: 'RigTech Industries', poDate: 'Jul 17, 2026', deliveryDate: 'Jul 30, 2026', amount: 'AED 24,900.00', status: 'Rejected', erpStatus: 'Failed', source: 'API' },
+  { id: 'PO-2026-005', customer: 'A/V Cables Ltd.', poDate: 'Jul 16, 2026', deliveryDate: 'Aug 15, 2026', amount: 'AED 134,000.00', status: 'Processing', erpStatus: 'Syncing', source: 'Email' },
 ];
 
 const columns: Column<PurchaseOrder>[] = [
@@ -134,8 +134,8 @@ export const PurchaseOrders = () => {
             </div>
             <select className="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm font-medium text-slate-700 outline-none cursor-pointer">
               <option value="">All Customers</option>
-              <option value="TechNova Solutions">TechNova Solutions</option>
-              <option value="Global Logistics Corp">Global Logistics Corp</option>
+              <option value="CableTech Mfg">CableTech Mfg</option>
+              <option value="ProVideo Connectors">ProVideo Connectors</option>
             </select>
             <select className="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm font-medium text-slate-700 outline-none cursor-pointer">
               <option value="">Any Date</option>

@@ -32,11 +32,11 @@ const mockDataMap: Record<string, any[]> = {
     { id: '2', code: 'AUH-WH1', name: 'Abu Dhabi Branch', type: 'Branch', status: 'Active' },
   ],
   company: [
-    { id: '1', code: 'COMP-01', name: 'Nexus Trading LLC', country: 'UAE', status: 'Active' },
+    { id: '1', code: 'COMP-01', name: 'ProCamera Connect LLC', country: 'UAE', status: 'Active' },
   ],
   bp: [
-    { id: '1', code: 'CUST-01', name: 'TechNova Solutions', type: 'Customer', status: 'Active' },
-    { id: '2', code: 'SUPP-01', name: 'Global Parts Inc.', type: 'Supplier', status: 'Active' },
+    { id: '1', code: 'CUST-01', name: 'CineRig Solutions', type: 'Customer', status: 'Active' },
+    { id: '2', code: 'SUPP-01', name: 'CableTech Mfg', type: 'Supplier', status: 'Active' },
   ],
   roles: [
     { id: '1', code: 'ADMIN', name: 'System Administrator', users: 2, status: 'Active' },

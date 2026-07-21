@@ -14,14 +14,33 @@ interface ItemMaster {
   uom: string;
   purchasePrice: string;
   salesPrice: string;
+  type?: 'Standard' | 'Combo';
+  subItems?: { sku: string; desc: string; qty: number }[];
 }
 
 const mockData: ItemMaster[] = [
-  { id: '1', sku: 'SKU-8921', code: 'ITM-9281', description: 'Dell XPS 15 Laptop', category: 'Electronics', uom: 'EA', purchasePrice: 'AED 6,500.00', salesPrice: 'AED 8,500.00' },
-  { id: '2', sku: 'SKU-8922', code: 'ITM-9282', description: 'Logitech MX Master 3S', category: 'Electronics', uom: 'EA', purchasePrice: 'AED 250.00', salesPrice: 'AED 450.00' },
-  { id: '3', sku: 'SKU-8923', code: 'ITM-9283', description: 'Dell UltraSharp 27 4K', category: 'Electronics', uom: 'EA', purchasePrice: 'AED 1,800.00', salesPrice: 'AED 2,800.00' },
-  { id: '4', sku: 'SKU-8924', code: 'ITM-9284', description: 'Ergonomic Office Chair', category: 'Furniture', uom: 'EA', purchasePrice: 'AED 800.00', salesPrice: 'AED 1,200.00' },
-  { id: '5', sku: 'SKU-8925', code: 'ITM-9285', description: 'Standing Desk Frame', category: 'Furniture', uom: 'EA', purchasePrice: 'AED 1,100.00', salesPrice: 'AED 1,800.00' },
+  { id: '1', sku: 'SKU-CAM-01', code: 'ITM-9281', description: '4K CCTV Security Camera', category: 'Cameras', uom: 'EA', purchasePrice: 'AED 800.00', salesPrice: 'AED 1,200.00' },
+  { id: '2', sku: 'SKU-CBL-100', code: 'ITM-9282', description: 'CCTV Coaxial Cable (RG59) 100m', category: 'Cables', uom: 'Roll', purchasePrice: 'AED 80.00', salesPrice: 'AED 150.00' },
+  { id: '3', sku: 'SKU-NVR-08', code: 'ITM-9283', description: 'NVR 8-Channel Recorder', category: 'Recorders', uom: 'EA', purchasePrice: 'AED 1,200.00', salesPrice: 'AED 1,800.00' },
+  { id: '4', sku: 'SKU-BNC-50', code: 'ITM-9284', description: 'BNC Connectors (Pack of 50)', category: 'Accessories', uom: 'PK', purchasePrice: 'AED 45.00', salesPrice: 'AED 90.00' },
+  { id: '5', sku: 'SKU-MLD-100', code: 'ITM-9285', description: 'Cable Molding / Conduit 100m', category: 'Hardware', uom: 'Roll', purchasePrice: 'AED 300.00', salesPrice: 'AED 500.00' },
+  { 
+    id: '6', 
+    sku: 'SKU-KIT-01', 
+    code: 'ITM-9286', 
+    description: 'Camera Installation Kit', 
+    category: 'Kits', 
+    uom: 'Set', 
+    purchasePrice: 'AED 4,000.00', 
+    salesPrice: 'AED 6,500.00',
+    type: 'Combo',
+    subItems: [
+      { sku: 'SKU-CAM-01', desc: '4K CCTV Security Camera', qty: 4 },
+      { sku: 'SKU-CBL-100', desc: 'CCTV Coaxial Cable (RG59) 100m', qty: 1 },
+      { sku: 'SKU-MLD-100', desc: 'Cable Molding / Conduit 100m', qty: 1 },
+      { sku: 'SKU-SPR-01', desc: 'Installation Spares Kit', qty: 1 }
+    ]
+  },
 ];
 
 export const Items = () => {
@@ -51,7 +70,28 @@ export const Items = () => {
         </div>
       ) 
     },
-    { header: 'Description', accessor: 'description', className: 'font-semibold text-slate-800' },
+    { 
+      header: 'Description', 
+      accessor: (row) => (
+        <div>
+          <span className="font-semibold text-slate-800 flex items-center gap-2">
+            {row.description}
+            {row.type === 'Combo' && <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-[10px] font-bold rounded-full">COMBO</span>}
+          </span>
+          {row.type === 'Combo' && row.subItems && (
+            <div className="mt-2 pl-4 border-l-2 border-indigo-100 space-y-1">
+              {row.subItems.map((sub, idx) => (
+                <div key={idx} className="flex gap-2 text-xs">
+                  <span className="text-slate-400 font-bold">{sub.qty}x</span>
+                  <span className="text-slate-600 font-medium">{sub.sku}</span>
+                  <span className="text-slate-500">- {sub.desc}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ) 
+    },
     { 
       header: 'Classification', 
       accessor: (row) => (
@@ -130,8 +170,11 @@ export const Items = () => {
             <Filter className="w-4 h-4 text-slate-400" />
             <select className="text-sm font-medium text-slate-700 bg-transparent outline-none cursor-pointer">
               <option value="">All Categories</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Furniture">Furniture</option>
+              <option value="Cameras">Cameras</option>
+              <option value="Cables">Cables</option>
+              <option value="Recorders">Recorders</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Hardware">Hardware</option>
             </select>
           </div>
         </div>

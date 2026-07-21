@@ -17,10 +17,10 @@ interface SalesOrder {
 }
 
 const mockData: SalesOrder[] = [
-  { id: 'SO-2026-001', customer: 'Alpha Corp', soDate: 'Jul 20, 2026', deliveryDate: 'Aug 05, 2026', amount: 'AED 15,000.00', status: 'Approved', erpStatus: 'Synced', source: 'Portal' },
-  { id: 'SO-2026-002', customer: 'Beta LLC', soDate: 'Jul 19, 2026', deliveryDate: 'Aug 10, 2026', amount: 'AED 8,500.00', status: 'Pending', erpStatus: 'Pending', source: 'Manual' },
-  { id: 'SO-2026-003', customer: 'Gamma Inc', soDate: 'Jul 18, 2026', deliveryDate: 'Jul 25, 2026', amount: 'AED 102,000.00', status: 'Approved', erpStatus: 'Synced', source: 'API' },
-  { id: 'SO-2026-004', customer: 'Delta Ltd', soDate: 'Jul 17, 2026', deliveryDate: 'Jul 30, 2026', amount: 'AED 4,200.00', status: 'Rejected', erpStatus: 'Failed', source: 'API' },
+  { id: 'SO-2026-001', customer: 'CineRig Solutions', soDate: 'Jul 20, 2026', deliveryDate: 'Aug 05, 2026', amount: 'AED 15,000.00', status: 'Approved', erpStatus: 'Synced', source: 'Portal' },
+  { id: 'SO-2026-002', customer: 'FocusPuller Pro', soDate: 'Jul 19, 2026', deliveryDate: 'Aug 10, 2026', amount: 'AED 8,500.00', status: 'Pending', erpStatus: 'Pending', source: 'Manual' },
+  { id: 'SO-2026-003', customer: 'OpticLink Studios', soDate: 'Jul 18, 2026', deliveryDate: 'Jul 25, 2026', amount: 'AED 102,000.00', status: 'Approved', erpStatus: 'Synced', source: 'API' },
+  { id: 'SO-2026-004', customer: 'LensConnect Corp', soDate: 'Jul 17, 2026', deliveryDate: 'Jul 30, 2026', amount: 'AED 4,200.00', status: 'Rejected', erpStatus: 'Failed', source: 'API' },
 ];
 
 const columns: Column<SalesOrder>[] = [
@@ -182,7 +182,7 @@ export const SalesOrders = () => {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-1">Customer Name <span className="text-rose-500">*</span></label>
-              <input type="text" placeholder="e.g. Alpha Corp" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
+              <input type="text" placeholder="e.g. CineRig Solutions" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
             </div>
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-1">Customer PO Reference</label>
@@ -218,7 +218,7 @@ export const SalesOrders = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   <tr>
-                    <td className="p-2"><input type="text" placeholder="Item name..." className="w-full px-2 py-1.5 border border-slate-200 rounded-md focus:border-indigo-500 outline-none" defaultValue="Dell XPS 15 Laptop" /></td>
+                    <td className="p-2"><input type="text" placeholder="Item name..." className="w-full px-2 py-1.5 border border-slate-200 rounded-md focus:border-indigo-500 outline-none" defaultValue="SDI Coaxial Cable 4K 10m" /></td>
                     <td className="p-2"><input type="number" min="1" className="w-full px-2 py-1.5 border border-slate-200 rounded-md focus:border-indigo-500 outline-none" defaultValue="2" /></td>
                     <td className="p-2"><input type="number" step="0.01" className="w-full px-2 py-1.5 border border-slate-200 rounded-md focus:border-indigo-500 outline-none" defaultValue="6500" /></td>
                     <td className="p-2 text-center"><button className="text-rose-500 hover:text-rose-700"><XCircle className="w-4 h-4 mx-auto" /></button></td>

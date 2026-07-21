@@ -15,10 +15,10 @@ interface Quotation {
 }
 
 const mockData: Quotation[] = [
-  { id: 'QT-2026-001', customer: 'Alpha Corp', date: 'Jul 20, 2026', validUntil: 'Aug 20, 2026', amount: 'AED 15,000.00', status: 'Approved' },
-  { id: 'QT-2026-002', customer: 'Beta LLC', date: 'Jul 19, 2026', validUntil: 'Aug 19, 2026', amount: 'AED 8,500.00', status: 'Draft' },
-  { id: 'QT-2026-003', customer: 'Gamma Inc', date: 'Jul 18, 2026', validUntil: 'Aug 18, 2026', amount: 'AED 102,000.00', status: 'Draft' },
-  { id: 'QT-2026-004', customer: 'Delta Ltd', date: 'Jul 17, 2026', validUntil: 'Aug 17, 2026', amount: 'AED 4,200.00', status: 'Rejected' },
+  { id: 'QT-2026-001', customer: 'CineRig Solutions', date: 'Jul 20, 2026', validUntil: 'Aug 20, 2026', amount: 'AED 15,000.00', status: 'Approved' },
+  { id: 'QT-2026-002', customer: 'FocusPuller Pro', date: 'Jul 19, 2026', validUntil: 'Aug 19, 2026', amount: 'AED 8,500.00', status: 'Draft' },
+  { id: 'QT-2026-003', customer: 'OpticLink Studios', date: 'Jul 18, 2026', validUntil: 'Aug 18, 2026', amount: 'AED 102,000.00', status: 'Draft' },
+  { id: 'QT-2026-004', customer: 'LensConnect Corp', date: 'Jul 17, 2026', validUntil: 'Aug 17, 2026', amount: 'AED 4,200.00', status: 'Rejected' },
 ];
 
 const columns: Column<Quotation>[] = [
@@ -122,8 +122,8 @@ export const Quotations = () => {
             </div>
             <select className="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm font-medium text-slate-700 outline-none cursor-pointer">
               <option value="">All Customers</option>
-              <option value="Alpha Corp">Alpha Corp</option>
-              <option value="Beta LLC">Beta LLC</option>
+              <option value="CineRig Solutions">CineRig Solutions</option>
+              <option value="FocusPuller Pro">FocusPuller Pro</option>
             </select>
           </div>
         </div>
@@ -149,7 +149,7 @@ export const Quotations = () => {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-1">Customer Name <span className="text-rose-500">*</span></label>
-              <input type="text" placeholder="e.g. Alpha Corp" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
+              <input type="text" placeholder="e.g. CineRig Solutions" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
             </div>
             <div>
               <label className="block text-sm font-bold text-slate-700 mb-1">Valid Until</label>
@@ -174,7 +174,7 @@ export const Quotations = () => {
                 <tbody className="divide-y divide-slate-100">
                   {/* Mock empty rows for the form UI */}
                   <tr>
-                    <td className="p-2"><input type="text" placeholder="Item name..." className="w-full px-2 py-1.5 border border-slate-200 rounded-md focus:border-indigo-500 outline-none" defaultValue="Dell XPS 15 Laptop" /></td>
+                    <td className="p-2"><input type="text" placeholder="Item name..." className="w-full px-2 py-1.5 border border-slate-200 rounded-md focus:border-indigo-500 outline-none" defaultValue="SDI Coaxial Cable 4K 10m" /></td>
                     <td className="p-2"><input type="number" min="1" className="w-full px-2 py-1.5 border border-slate-200 rounded-md focus:border-indigo-500 outline-none" defaultValue="2" /></td>
                     <td className="p-2"><input type="number" step="0.01" className="w-full px-2 py-1.5 border border-slate-200 rounded-md focus:border-indigo-500 outline-none" defaultValue="6500" /></td>
                     <td className="p-2 text-center"><button className="text-rose-500 hover:text-rose-700"><XCircle className="w-4 h-4 mx-auto" /></button></td>

@@ -17,14 +17,34 @@ interface InventoryItem {
   minStock: number;
   maxStock: number;
   status: string;
+  type?: 'Standard' | 'Combo';
+  subItems?: { sku: string; desc: string; qty: number }[];
 }
 
 const mockInventory: InventoryItem[] = [
-  { id: '1', sku: 'SKU-8921', description: 'Dell XPS 15 Laptop', warehouse: 'Central Warehouse', available: 120, reserved: 45, minStock: 50, maxStock: 500, status: 'In Stock' },
-  { id: '2', sku: 'SKU-8922', description: 'Logitech MX Master 3S', warehouse: 'DIP Facility', available: 15, reserved: 10, minStock: 20, maxStock: 200, status: 'Low Stock' },
-  { id: '3', sku: 'SKU-8923', description: 'Dell UltraSharp 27 4K', warehouse: 'Central Warehouse', available: 0, reserved: 0, minStock: 10, maxStock: 100, status: 'Out of Stock' },
-  { id: '4', sku: 'SKU-8924', description: 'Ergonomic Office Chair', warehouse: 'JAFZA Freezone', available: 450, reserved: 50, minStock: 100, maxStock: 1000, status: 'In Stock' },
-  { id: '5', sku: 'SKU-8925', description: 'Standing Desk Frame', warehouse: 'DIP Facility', available: 8, reserved: 2, minStock: 15, maxStock: 150, status: 'Low Stock' },
+  { id: '1', sku: 'SKU-CAM-01', description: '4K CCTV Security Camera', warehouse: 'Central Warehouse', available: 120, reserved: 45, minStock: 50, maxStock: 500, status: 'In Stock' },
+  { id: '2', sku: 'SKU-CBL-100', description: 'CCTV Coaxial Cable (RG59) 100m', warehouse: 'DIP Facility', available: 15, reserved: 10, minStock: 20, maxStock: 200, status: 'Low Stock' },
+  { id: '3', sku: 'SKU-NVR-08', description: 'NVR 8-Channel Recorder', warehouse: 'Central Warehouse', available: 0, reserved: 0, minStock: 10, maxStock: 100, status: 'Out of Stock' },
+  { id: '4', sku: 'SKU-BNC-50', description: 'BNC Connectors (Pack of 50)', warehouse: 'JAFZA Freezone', available: 450, reserved: 50, minStock: 100, maxStock: 1000, status: 'In Stock' },
+  { id: '5', sku: 'SKU-MLD-100', description: 'Cable Molding / Conduit 100m', warehouse: 'DIP Facility', available: 8, reserved: 2, minStock: 15, maxStock: 150, status: 'Low Stock' },
+  { 
+    id: '6', 
+    sku: 'SKU-KIT-01', 
+    description: 'Camera Installation Kit', 
+    warehouse: 'Central Warehouse', 
+    available: 15, 
+    reserved: 2, 
+    minStock: 10, 
+    maxStock: 50, 
+    status: 'In Stock',
+    type: 'Combo',
+    subItems: [
+      { sku: 'SKU-CAM-01', desc: '4K CCTV Security Camera', qty: 4 },
+      { sku: 'SKU-CBL-100', desc: 'CCTV Coaxial Cable (RG59) 100m', qty: 1 },
+      { sku: 'SKU-MLD-100', desc: 'Cable Molding / Conduit 100m', qty: 1 },
+      { sku: 'SKU-SPR-01', desc: 'Installation Spares Kit', qty: 1 }
+    ]
+  },
 ];
 
 const distributionData = [
@@ -39,8 +59,22 @@ const columns: Column<InventoryItem>[] = [
     header: 'SKU & Description', 
     accessor: (row) => (
       <div className="flex flex-col">
-        <span className="font-bold text-indigo-600">{row.sku}</span>
+        <span className="font-bold text-indigo-600 flex items-center gap-2">
+          {row.sku}
+          {row.type === 'Combo' && <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-[10px] font-bold rounded-full">COMBO</span>}
+        </span>
         <span className="text-sm text-slate-500 font-medium">{row.description}</span>
+        {row.type === 'Combo' && row.subItems && (
+          <div className="mt-2 pl-3 border-l-2 border-indigo-100 space-y-1">
+            {row.subItems.map((sub, idx) => (
+              <div key={idx} className="flex gap-1.5 text-[11px]">
+                <span className="text-slate-400 font-bold">{sub.qty}x</span>
+                <span className="text-slate-600 font-medium">{sub.sku}</span>
+                <span className="text-slate-500">- {sub.desc}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     ) 
   },

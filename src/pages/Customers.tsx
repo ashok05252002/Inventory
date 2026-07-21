@@ -18,11 +18,11 @@ interface CustomerModel {
 }
 
 const mockData: CustomerModel[] = [
-  { id: '1', code: 'CUST-1001', name: 'TechNova Solutions', email: 'billing@technova.ae', phone: '+971 4 123 4567', creditLimit: 'AED 150,000.00', paymentTerms: 'Net 30', status: 'Active' },
-  { id: '2', code: 'CUST-1002', name: 'Global Logistics Corp', email: 'finance@globallogistics.com', phone: '+971 50 987 6543', creditLimit: 'AED 50,000.00', paymentTerms: 'Net 15', status: 'Active' },
-  { id: '3', code: 'CUST-1003', name: 'Apex Office Supplies', email: 'accounts@apex.ae', phone: '+971 4 555 1234', creditLimit: 'AED 10,000.00', paymentTerms: 'COD', status: 'On Hold' },
-  { id: '4', code: 'CUST-1004', name: 'Nexus Hardware', email: 'payables@nexus.io', phone: '+971 52 111 2222', creditLimit: 'AED 200,000.00', paymentTerms: 'Net 60', status: 'Active' },
-  { id: '5', code: 'CUST-1005', name: 'Quantum Dynamics', email: 'vendor.mgmt@quantum.com', phone: '+971 2 444 8888', creditLimit: 'AED 0.00', paymentTerms: 'COD', status: 'Inactive' },
+  { id: '1', code: 'CUST-1001', name: 'CineRig Solutions', email: 'billing@cinerig.ae', phone: '+971 4 123 4567', creditLimit: 'AED 150,000.00', paymentTerms: 'Net 30', status: 'Active' },
+  { id: '2', code: 'CUST-1002', name: 'FocusPuller Pro', email: 'finance@focuspuller.com', phone: '+971 50 987 6543', creditLimit: 'AED 50,000.00', paymentTerms: 'Net 15', status: 'Active' },
+  { id: '3', code: 'CUST-1003', name: 'OpticLink Studios', email: 'accounts@opticlink.ae', phone: '+971 4 555 1234', creditLimit: 'AED 10,000.00', paymentTerms: 'COD', status: 'On Hold' },
+  { id: '4', code: 'CUST-1004', name: 'LensConnect Corp', email: 'payables@lensconnect.io', phone: '+971 52 111 2222', creditLimit: 'AED 200,000.00', paymentTerms: 'Net 60', status: 'Active' },
+  { id: '5', code: 'CUST-1005', name: 'RigWire Systems', email: 'vendor.mgmt@rigwire.com', phone: '+971 2 444 8888', creditLimit: 'AED 0.00', paymentTerms: 'COD', status: 'Inactive' },
 ];
 
 export const Customers = () => {

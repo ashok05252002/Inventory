@@ -21,14 +21,17 @@ interface POItem {
 }
 
 const quoteData: QuoteItem[] = [
-  { id: 'q1', sku: 'SKU-8921', desc: 'Dell XPS 15 Laptop', qty: 2, price: 6500 },
-  { id: 'q2', sku: 'SKU-8922', desc: 'Logitech MX Master 3S', qty: 5, price: 400 },
+  { id: 'q1', sku: 'SKU-CAM-01', desc: '4K Security Camera', qty: 4, price: 1200 },
+  { id: 'q2', sku: 'SKU-CBL-100', desc: 'SDI Coaxial Cable (Per Meter)', qty: 100, price: 15 },
+  { id: 'q3', sku: 'SKU-MLD-01', desc: 'Cable Molding (Per Meter)', qty: 100, price: 5 },
+  { id: 'q4', sku: 'SKU-SPR-01', desc: 'Installation Spares Kit', qty: 1, price: 250 },
 ];
 
 const initialPOItems: POItem[] = [
-  { id: 'p1', extractedSku: 'SKU-8921', extractedDesc: 'Dell XPS 15', extractedQty: 2, extractedPrice: 6500, mappedQuoteItemId: 'q1' }, // Exact match
-  { id: 'p2', extractedSku: 'SKU-8922', extractedDesc: 'MX Master Mouse', extractedQty: 4, extractedPrice: 400, mappedQuoteItemId: 'q2' }, // Qty mismatch (4 instead of 5)
-  { id: 'p3', extractedSku: 'SKU-9999', extractedDesc: 'Extra Warranty', extractedQty: 1, extractedPrice: 500, mappedQuoteItemId: null }, // Unmapped
+  { id: 'p1', extractedSku: 'SKU-CAM-01', extractedDesc: '4K Security Camera', extractedQty: 4, extractedPrice: 1200, mappedQuoteItemId: 'q1' },
+  { id: 'p2', extractedSku: 'SKU-CBL-100', extractedDesc: 'SDI Coax Cable', extractedQty: 100, extractedPrice: 15, mappedQuoteItemId: 'q2' },
+  { id: 'p3', extractedSku: 'SKU-MLD-01', extractedDesc: 'Cable Conduit', extractedQty: 100, extractedPrice: 5, mappedQuoteItemId: 'q3' },
+  { id: 'p4', extractedSku: 'SKU-SPR-01', extractedDesc: 'Spares & Connectors', extractedQty: 1, extractedPrice: 250, mappedQuoteItemId: 'q4' },
 ];
 
 export const DocumentValidation = () => {
@@ -134,24 +137,24 @@ export const DocumentValidation = () => {
             <div className="w-full max-w-2xl bg-white shadow-2xl aspect-[1/1.4] p-12 relative flex flex-col">
               <div className="border-b-2 border-slate-900 pb-6 mb-8 flex justify-between">
                 <div>
-                  <h2 className="text-3xl font-black text-slate-900 tracking-tighter">PURCHASE ORDER</h2>
-                  <p className="text-slate-500 font-bold mt-2">PO-2026-9982</p>
+                  <h2 className="text-3xl font-black text-slate-900 tracking-tighter">SERVICE WORK ORDER</h2>
+                  <p className="text-slate-500 font-bold mt-2">WO-2026-9982</p>
                 </div>
                 <div className="text-right">
-                  <h3 className="text-xl font-bold text-slate-800">Alpha Corp</h3>
-                  <p className="text-sm text-slate-500">accounts@alphacorp.com</p>
+                  <h3 className="text-xl font-bold text-slate-800">CineRig Solutions</h3>
+                  <p className="text-sm text-slate-500">accounts@cinerig.com</p>
                 </div>
               </div>
               <div className="flex-1 flex flex-col relative bg-white">
                 <div className="mb-6 flex justify-between text-sm">
                   <div>
                     <p className="font-bold text-slate-700 mb-1">Vendor:</p>
-                    <p className="text-slate-600 font-medium">Your Company LLC</p>
+                    <p className="text-slate-600 font-medium">ProCamera Connect LLC</p>
                     <p className="text-slate-500">Dubai, UAE</p>
                   </div>
                   <div className="text-right">
                     <p className="font-bold text-slate-700 mb-1">Shipping To:</p>
-                    <p className="text-slate-600 font-medium">Alpha Corp HQ</p>
+                    <p className="text-slate-600 font-medium">CineRig HQ</p>
                     <p className="text-slate-500">Abu Dhabi, UAE</p>
                   </div>
                 </div>
@@ -159,39 +162,31 @@ export const DocumentValidation = () => {
                 <table className="w-full text-left mb-8">
                   <thead className="border-b-2 border-slate-800 text-slate-800">
                     <tr>
-                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider">Item Description</th>
-                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider text-center">Qty</th>
-                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider text-right">Unit Price</th>
-                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider text-right">Total</th>
+                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider">Service Details</th>
+                      <th className="py-3 px-2 font-bold uppercase text-xs tracking-wider text-right">Value</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 text-slate-700">
                     <tr>
                       <td className="py-4 px-2">
-                        <p className="font-bold text-slate-900">Dell XPS 15</p>
-                        <p className="text-xs text-slate-500">SKU-8921</p>
+                        <p className="font-bold text-slate-900">Installation Service Type</p>
+                        <p className="text-xs text-slate-500">Category: Security</p>
                       </td>
-                      <td className="py-4 px-2 text-center font-medium">2</td>
-                      <td className="py-4 px-2 text-right">AED 6,500.00</td>
-                      <td className="py-4 px-2 text-right font-bold text-slate-900">AED 13,000.00</td>
+                      <td className="py-4 px-2 text-right font-medium">Camera Installation</td>
                     </tr>
                     <tr>
                       <td className="py-4 px-2">
-                        <p className="font-bold text-slate-900">MX Master Mouse</p>
-                        <p className="text-xs text-slate-500">SKU-8922</p>
+                        <p className="font-bold text-slate-900">Number of Cameras</p>
+                        <p className="text-xs text-slate-500">Units required</p>
                       </td>
-                      <td className="py-4 px-2 text-center font-medium">4</td>
-                      <td className="py-4 px-2 text-right">AED 400.00</td>
-                      <td className="py-4 px-2 text-right font-bold text-slate-900">AED 1,600.00</td>
+                      <td className="py-4 px-2 text-right font-bold text-slate-900">4</td>
                     </tr>
                     <tr>
                       <td className="py-4 px-2">
-                        <p className="font-bold text-slate-900">Extra Warranty</p>
-                        <p className="text-xs text-slate-500">SKU-9999</p>
+                        <p className="font-bold text-slate-900">Total Distance</p>
+                        <p className="text-xs text-slate-500">Wiring required</p>
                       </td>
-                      <td className="py-4 px-2 text-center font-medium">1</td>
-                      <td className="py-4 px-2 text-right">AED 500.00</td>
-                      <td className="py-4 px-2 text-right font-bold text-slate-900">AED 500.00</td>
+                      <td className="py-4 px-2 text-right font-bold text-slate-900">100m</td>
                     </tr>
                   </tbody>
                 </table>
@@ -200,15 +195,15 @@ export const DocumentValidation = () => {
                   <div className="w-64">
                     <div className="flex justify-between py-2 border-b border-slate-200">
                       <span className="text-slate-600 font-medium">Subtotal:</span>
-                      <span className="font-bold text-slate-800">AED 15,100.00</span>
+                      <span className="font-bold text-slate-800">AED 7,050.00</span>
                     </div>
                     <div className="flex justify-between py-2 border-b border-slate-200">
                       <span className="text-slate-600 font-medium">VAT (5%):</span>
-                      <span className="font-bold text-slate-800">AED 755.00</span>
+                      <span className="font-bold text-slate-800">AED 352.50</span>
                     </div>
                     <div className="flex justify-between py-3 bg-slate-50 px-3 rounded-lg mt-2">
                       <span className="font-black text-slate-900">Total:</span>
-                      <span className="font-black text-indigo-700">AED 15,855.00</span>
+                      <span className="font-black text-indigo-700">AED 7,402.50</span>
                     </div>
                   </div>
                 </div>
@@ -256,7 +251,7 @@ export const DocumentValidation = () => {
                       className="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-lg text-sm font-semibold text-slate-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none transition-all shadow-sm cursor-pointer"
                     >
                       <option value="">-- Select a Quotation to validate against --</option>
-                      <option value="QT-2026-001">QT-2026-001 (Alpha Corp) - AED 15,750.00</option>
+                      <option value="QT-2026-001">QT-2026-001 (CineRig Solutions) - AED 7,402.50</option>
                     </select>
                   </div>
                   {selectedQuote !== '' && (
@@ -295,15 +290,26 @@ export const DocumentValidation = () => {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
-                      {poItems.map((po) => {
+                      <tr className="bg-slate-100 border-b border-slate-200">
+                        <td colSpan={3} className="p-3">
+                           <div className="flex items-center gap-2">
+                             <div className="w-1.5 h-4 bg-indigo-500 rounded-full"></div>
+                             <span className="font-bold text-slate-800 text-sm uppercase tracking-wider">Camera Installation</span>
+                             <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-[10px] font-bold rounded-full ml-2">Extracted BOM</span>
+                           </div>
+                        </td>
+                      </tr>
+                      {poItems.map((po, index) => {
                         const qItem = po.mappedQuoteItemId ? quoteData.find(q => q.id === po.mappedQuoteItemId) : null;
                         const isQtyMatch = qItem && qItem.qty === po.extractedQty;
                         const isPriceMatch = qItem && qItem.price === po.extractedPrice;
                         const isExactMatch = qItem && isQtyMatch && isPriceMatch;
                         
                         return (
-                          <tr key={po.id} className="hover:bg-slate-50/50 transition-colors">
-                            <td className="p-3 bg-slate-50/30 align-top">
+                          <tr key={po.id} className="hover:bg-slate-50/50 transition-colors relative">
+                            <td className="p-3 pl-12 bg-slate-50/30 align-top relative">
+                              <div className={`absolute left-5 top-0 w-px bg-slate-300 ${index === poItems.length - 1 ? 'h-6' : 'h-full'}`}></div>
+                              <div className="absolute left-5 top-6 w-4 h-px bg-slate-300"></div>
                               <p className="font-bold text-slate-800">{po.extractedSku}</p>
                               <p className="text-xs text-slate-500 mb-1 truncate w-40">{po.extractedDesc}</p>
                               <div className="flex gap-2 text-xs">
@@ -312,7 +318,7 @@ export const DocumentValidation = () => {
                               </div>
                             </td>
                             
-                            <td className="p-3 align-top bg-indigo-50/10 border-l border-slate-100">
+                            <td className="p-3 align-top bg-indigo-50/10 border-l border-slate-100 relative">
                               {qItem ? (
                                 <div>
                                   <div className="flex items-center gap-2 mb-1">

@@ -15,17 +15,38 @@ interface InventoryDetailItem {
   total: number;
   minStock: number;
   status: string;
+  type?: 'Standard' | 'Combo';
+  subItems?: { sku: string; desc: string; qty: number }[];
 }
 
 const mockInventoryList: InventoryDetailItem[] = [
-  { id: '1', sku: 'SKU-8921', description: 'Dell XPS 15 Laptop', category: 'Electronics', warehouse: 'Central Warehouse', available: 120, reserved: 45, total: 165, minStock: 50, status: 'In Stock' },
-  { id: '2', sku: 'SKU-8922', description: 'Logitech MX Master 3S', category: 'Electronics', warehouse: 'DIP Facility', available: 15, reserved: 10, total: 25, minStock: 20, status: 'Low Stock' },
-  { id: '3', sku: 'SKU-8923', description: 'Dell UltraSharp 27 4K', category: 'Electronics', warehouse: 'Central Warehouse', available: 0, reserved: 0, total: 0, minStock: 10, status: 'Out of Stock' },
-  { id: '4', sku: 'SKU-8924', description: 'Ergonomic Office Chair', category: 'Furniture', warehouse: 'JAFZA Freezone', available: 450, reserved: 50, total: 500, minStock: 100, status: 'In Stock' },
-  { id: '5', sku: 'SKU-8925', description: 'Standing Desk Frame', category: 'Furniture', warehouse: 'DIP Facility', available: 8, reserved: 2, total: 10, minStock: 15, status: 'Low Stock' },
-  { id: '6', sku: 'SKU-8926', description: 'Apple MacBook Pro M3', category: 'Electronics', warehouse: 'Central Warehouse', available: 32, reserved: 5, total: 37, minStock: 20, status: 'In Stock' },
-  { id: '7', sku: 'SKU-8927', description: 'Keychron K2 Mechanical Keyboard', category: 'Electronics', warehouse: 'JAFZA Freezone', available: 210, reserved: 40, total: 250, minStock: 50, status: 'In Stock' },
-  { id: '8', sku: 'SKU-8928', description: 'Herman Miller Aeron', category: 'Furniture', warehouse: 'Central Warehouse', available: 5, reserved: 15, total: 20, minStock: 10, status: 'Low Stock' },
+  { id: '1', sku: 'SKU-CAM-01', description: '4K CCTV Security Camera', category: 'Cameras', warehouse: 'Central Warehouse', available: 120, reserved: 45, total: 165, minStock: 50, status: 'In Stock' },
+  { id: '2', sku: 'SKU-CBL-100', description: 'CCTV Coaxial Cable (RG59) 100m', category: 'Cables', warehouse: 'DIP Facility', available: 15, reserved: 10, total: 25, minStock: 20, status: 'Low Stock' },
+  { id: '3', sku: 'SKU-NVR-08', description: 'NVR 8-Channel Recorder', category: 'Recorders', warehouse: 'Central Warehouse', available: 0, reserved: 0, total: 0, minStock: 10, status: 'Out of Stock' },
+  { id: '4', sku: 'SKU-BNC-50', description: 'BNC Connectors (Pack of 50)', category: 'Accessories', warehouse: 'JAFZA Freezone', available: 450, reserved: 50, total: 500, minStock: 100, status: 'In Stock' },
+  { id: '5', sku: 'SKU-MLD-100', description: 'Cable Molding / Conduit 100m', category: 'Hardware', warehouse: 'DIP Facility', available: 8, reserved: 2, total: 10, minStock: 15, status: 'Low Stock' },
+  { id: '6', sku: 'SKU-CAM-PTZ', description: 'PTZ Dome Camera', category: 'Cameras', warehouse: 'Central Warehouse', available: 32, reserved: 5, total: 37, minStock: 20, status: 'In Stock' },
+  { id: '7', sku: 'SKU-PW-12V', description: '12V DC Power Supply', category: 'Accessories', warehouse: 'JAFZA Freezone', available: 210, reserved: 40, total: 250, minStock: 50, status: 'In Stock' },
+  { id: '8', sku: 'SKU-MNT-W', description: 'Wall Mount Bracket', category: 'Hardware', warehouse: 'Central Warehouse', available: 5, reserved: 15, total: 20, minStock: 10, status: 'Low Stock' },
+  { 
+    id: '9', 
+    sku: 'SKU-KIT-01', 
+    description: 'Camera Installation Kit', 
+    category: 'Kits',
+    warehouse: 'Central Warehouse', 
+    available: 15, 
+    reserved: 2, 
+    total: 17,
+    minStock: 10, 
+    status: 'In Stock',
+    type: 'Combo',
+    subItems: [
+      { sku: 'SKU-CAM-01', desc: '4K CCTV Security Camera', qty: 4 },
+      { sku: 'SKU-CBL-100', desc: 'CCTV Coaxial Cable (RG59) 100m', qty: 1 },
+      { sku: 'SKU-MLD-100', desc: 'Cable Molding / Conduit 100m', qty: 1 },
+      { sku: 'SKU-SPR-01', desc: 'Installation Spares Kit', qty: 1 }
+    ]
+  },
 ];
 
 export const InventoryList = () => {
@@ -36,9 +57,23 @@ export const InventoryList = () => {
       header: 'SKU & Description', 
       accessor: (row) => (
         <div className="flex flex-col">
-          <span className="font-bold text-indigo-600 cursor-pointer hover:underline">{row.sku}</span>
+          <span className="font-bold text-indigo-600 flex items-center gap-2 hover:underline cursor-pointer">
+            {row.sku}
+            {row.type === 'Combo' && <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-[10px] font-bold rounded-full">COMBO</span>}
+          </span>
           <span className="text-sm font-medium text-slate-700">{row.description}</span>
           <span className="text-xs text-slate-500">{row.category}</span>
+          {row.type === 'Combo' && row.subItems && (
+            <div className="mt-2 pl-3 border-l-2 border-indigo-100 space-y-1">
+              {row.subItems.map((sub, idx) => (
+                <div key={idx} className="flex gap-1.5 text-[11px]">
+                  <span className="text-slate-400 font-bold">{sub.qty}x</span>
+                  <span className="text-slate-600 font-medium">{sub.sku}</span>
+                  <span className="text-slate-500">- {sub.desc}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ) 
     },
@@ -128,8 +163,10 @@ export const InventoryList = () => {
             </select>
             <select className="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm font-medium text-slate-700 outline-none cursor-pointer">
               <option value="">All Categories</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Furniture">Furniture</option>
+              <option value="Cameras">Cameras</option>
+              <option value="Cables">Cables</option>
+              <option value="Recorders">Recorders</option>
+              <option value="Accessories">Accessories</option>
               <option value="Hardware">Hardware</option>
             </select>
           </div>

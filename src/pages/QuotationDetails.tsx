@@ -14,16 +14,16 @@ export const QuotationDetails = () => {
   // Mock quotation data
   const quote = {
     id: id || 'QT-2026-001',
-    customer: 'Alpha Corp',
+    customer: 'CineRig Solutions',
     contact: 'John Smith',
-    email: 'john.smith@alphacorp.com',
+    email: 'john.smith@cinerig.com',
     date: 'Jul 20, 2026',
     validUntil: 'Aug 20, 2026',
     salesRep: 'Sarah Jenkins',
     notes: 'Includes 10% volume discount as discussed.',
     items: [
-      { id: '1', sku: 'SKU-8921', desc: 'Dell XPS 15 Laptop', qty: 2, unitPrice: 6500, total: 13000 },
-      { id: '2', sku: 'SKU-8922', desc: 'Logitech MX Master 3S', qty: 5, unitPrice: 400, total: 2000 },
+      { id: '1', sku: 'SKU-8921', desc: 'SDI Coaxial Cable 4K 10m', qty: 2, unitPrice: 6500, total: 13000 },
+      { id: '2', sku: 'SKU-8922', desc: 'HDMI 2.1 Ultra High Speed 2m', qty: 5, unitPrice: 400, total: 2000 },
     ],
     subtotal: 15000,
     tax: 750,

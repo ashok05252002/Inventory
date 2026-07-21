@@ -16,9 +16,9 @@ interface LineItem {
 }
 
 const lineItemsData: LineItem[] = [
-  { id: '1', itemCode: 'ITM-9281', description: 'Dell XPS 15 Laptop - 32GB RAM, 1TB SSD', quantity: 5, uom: 'EA', price: 'AED 8,500.00', discount: '5%', tax: '5%', amount: 'AED 42,416.25' },
-  { id: '2', itemCode: 'ITM-9282', description: 'Logitech MX Master 3S Wireless Mouse', quantity: 10, uom: 'EA', price: 'AED 450.00', discount: '0%', tax: '5%', amount: 'AED 4,725.00' },
-  { id: '3', itemCode: 'ITM-9283', description: 'Dell UltraSharp 27 4K USB-C Monitor', quantity: 5, uom: 'EA', price: 'AED 2,800.00', discount: '10%', tax: '5%', amount: 'AED 13,230.00' },
+  { id: '1', itemCode: 'ITM-9281', description: '4K CCTV Security Camera - Night Vision, IP67', quantity: 5, uom: 'EA', price: 'AED 1,200.00', discount: '5%', tax: '5%', amount: 'AED 5,985.00' },
+  { id: '2', itemCode: 'ITM-9282', description: 'CCTV Coaxial Cable (RG59) 100m Roll', quantity: 10, uom: 'Roll', price: 'AED 150.00', discount: '0%', tax: '5%', amount: 'AED 1,575.00' },
+  { id: '3', itemCode: 'ITM-9283', description: 'NVR 8-Channel Recorder - 4TB HDD', quantity: 1, uom: 'EA', price: 'AED 1,800.00', discount: '10%', tax: '5%', amount: 'AED 1,701.00' },
 ];
 
 const columns: Column<LineItem>[] = [
@@ -84,7 +84,7 @@ export const PurchaseOrderDetails = () => {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-1">Customer Name <span className="text-rose-500">*</span></label>
-                  <input type="text" defaultValue="TechNova Solutions" className="w-full px-3 py-2 border border-slate-200 rounded-lg bg-white" />
+                  <input type="text" defaultValue="CableTech Mfg" className="w-full px-3 py-2 border border-slate-200 rounded-lg bg-white" />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-1">Customer Code <span className="text-rose-500">*</span></label>
@@ -141,7 +141,7 @@ export const PurchaseOrderDetails = () => {
                 </div>
                 <div>
                   <span className="text-sm font-semibold text-slate-500 block mb-1">Remarks</span>
-                  <p className="text-sm font-medium text-slate-700 bg-amber-50 border border-amber-100 p-3 rounded-lg">Please ensure fragile packing for the monitors.</p>
+                  <p className="text-sm font-medium text-slate-700 bg-amber-50 border border-amber-100 p-3 rounded-lg">Please ensure fragile packing for the cameras.</p>
                 </div>
               </div>
           </CardContent>
@@ -189,19 +189,19 @@ export const PurchaseOrderDetails = () => {
             <div className="max-w-xs ml-auto space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="font-semibold text-slate-500">Subtotal</span>
-                <span className="font-bold text-slate-800">AED 57,500.00</span>
+                <span className="font-bold text-slate-800">AED 9,300.00</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="font-semibold text-slate-500">Discount</span>
-                <span className="font-bold text-rose-500">- AED 3,525.00</span>
+                <span className="font-bold text-rose-500">- AED 480.00</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="font-semibold text-slate-500">Tax (5% VAT)</span>
-                <span className="font-bold text-slate-800">AED 2,698.75</span>
+                <span className="font-bold text-slate-800">AED 441.00</span>
               </div>
               <div className="flex justify-between text-lg pt-3 border-t border-slate-200">
                 <span className="font-extrabold text-slate-900">Total</span>
-                <span className="font-extrabold text-indigo-600">AED 56,673.75</span>
+                <span className="font-extrabold text-indigo-600">AED 9,261.00</span>
               </div>
             </div>
           </div>

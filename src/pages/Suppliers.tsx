@@ -18,11 +18,11 @@ interface SupplierModel {
 }
 
 const mockData: SupplierModel[] = [
-  { id: '1', code: 'SUPP-1001', name: 'Global Parts Inc.', email: 'billing@technova.ae', phone: '+971 4 123 4567', creditLimit: 'AED 150,000.00', paymentTerms: 'Net 30', status: 'Active' },
-  { id: '2', code: 'SUPP-1002', name: 'Global Logistics Corp', email: 'finance@globallogistics.com', phone: '+971 50 987 6543', creditLimit: 'AED 50,000.00', paymentTerms: 'Net 15', status: 'Active' },
-  { id: '3', code: 'SUPP-1003', name: 'Apex Office Supplies', email: 'accounts@apex.ae', phone: '+971 4 555 1234', creditLimit: 'AED 10,000.00', paymentTerms: 'COD', status: 'On Hold' },
-  { id: '4', code: 'SUPP-1004', name: 'Nexus Hardware', email: 'payables@nexus.io', phone: '+971 52 111 2222', creditLimit: 'AED 200,000.00', paymentTerms: 'Net 60', status: 'Active' },
-  { id: '5', code: 'SUPP-1005', name: 'Quantum Dynamics', email: 'vendor.mgmt@quantum.com', phone: '+971 2 444 8888', creditLimit: 'AED 0.00', paymentTerms: 'COD', status: 'Inactive' },
+  { id: '1', code: 'SUPP-1001', name: 'CableTech Mfg', email: 'billing@cabletech.ae', phone: '+971 4 123 4567', creditLimit: 'AED 150,000.00', paymentTerms: 'Net 30', status: 'Active' },
+  { id: '2', code: 'SUPP-1002', name: 'ProVideo Connectors', email: 'finance@provideoconnect.com', phone: '+971 50 987 6543', creditLimit: 'AED 50,000.00', paymentTerms: 'Net 15', status: 'Active' },
+  { id: '3', code: 'SUPP-1003', name: 'Cinema Wire Corp', email: 'accounts@cinemawire.ae', phone: '+971 4 555 1234', creditLimit: 'AED 10,000.00', paymentTerms: 'COD', status: 'On Hold' },
+  { id: '4', code: 'SUPP-1004', name: 'RigTech Industries', email: 'payables@rigtech.io', phone: '+971 52 111 2222', creditLimit: 'AED 200,000.00', paymentTerms: 'Net 60', status: 'Active' },
+  { id: '5', code: 'SUPP-1005', name: 'A/V Cables Ltd.', email: 'vendor.mgmt@avcables.com', phone: '+971 2 444 8888', creditLimit: 'AED 0.00', paymentTerms: 'COD', status: 'Inactive' },
 ];
 
 export const Suppliers = () => {
